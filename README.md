@@ -5,6 +5,8 @@ PTDB--Plain Text Database-- Is a flat file database system written in python. Wh
 
 ### Index:
 * [Creating a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#creating-a-ptdb-database)
+  * [Manually](https://github.com/BryanMorfe/ptdb/blob/master/README.md#manually)
+  * [Using Python](https://github.com/BryanMorfe/ptdb/blob/master/README.md#through-python)
 * [Reading a PTDB Databasa](https://github.com/BryanMorfe/ptdb/blob/master/README.md#reading-a-ptdb-database)
 * [Writing to a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#writing-to-a-ptdb-database)
 * [Installing PTDB](https://github.com/BryanMorfe/ptdb/blob/master/README.md#installation)
