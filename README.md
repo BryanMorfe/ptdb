@@ -4,10 +4,10 @@ PTDB--Plain Text Database-- Is a flat file database system written in python. Wh
 ## How To Guide
 
 ### Index:
-* [Creating a PTDB Database]
-* [Reading a PTDB Databasa]
-* [Writing to a PTDB Database]
-* [Installing PTDB]
+* [Creating a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#creating-a-ptdb-database)
+* [Reading a PTDB Databasa](https://github.com/BryanMorfe/ptdb/blob/master/README.md#reading-a-ptdb-database)
+* [Writing to a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#writing-to-a-ptdb-database)
+* [Installing PTDB](https://github.com/BryanMorfe/ptdb/blob/master/README.md#installation)
 
 #### Creating a PTDB Database
 ##### There are two ways to create a PTDB database; 
@@ -119,7 +119,7 @@ def removeEntry(index)
 ```
 This method will remove an **entire** entry on a specified row (index).
 
-**NOTE: A FULL [REFERENCE](https://github.com/BryanMorfe/ptdb/REFERENCE.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
+**NOTE: A FULL [REFERENCE](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
 #### Installation:
 ##### For Windows Users:
 * Download the lastest PTDB version available in the 'zip' format.
