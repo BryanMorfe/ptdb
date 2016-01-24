@@ -1,6 +1,6 @@
 # PTDB v1.0.0
-PTDB--Plain Text Database-- Is a flat file database system written in python. When simplicity and functionality are required, use PTDB.
-
+***PTDB--Plain Text Database-- Is a flat file database system written in python. When simplicity and functionality are required, use PTDB.***
+**NOTE: PTDB is compatible with python 2 and 3.**
 ## How To Guide
 
 ### Index:
