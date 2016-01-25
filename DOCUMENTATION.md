@@ -248,7 +248,7 @@ def login(email, password):
   return False
   
 # Now we test the function login.
-if login('bryanmorfe@gmail.com', password1):
+if login('bryanmorfe@gmail.com', 'password1'):
  print("User logged successfully.")
 else:
  print("Credentials are incorrect.")
@@ -300,4 +300,4 @@ After the execution of the above code, our new file should look like this:
 ```
 
 #### Credits
-PTDB, as of *now*, the idea behind PTDB is mine. It created iniatially for personal usage, but then I thought it could be useful for you developers our there too. Although PTDB has been programmed solely by me, Bryan Morfe,  I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
+PTDB: The idea behind PTDB is mine. It created iniatially for personal usage, but then I thought it could be useful for you developers our there too. Although PTDB, as of **now**, has been programmed solely by me, Bryan Morfe,  I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
