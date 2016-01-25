@@ -1,7 +1,7 @@
-# PTDB v1.0.0 REFERENCE
-This file contains a full reference of the Plain Text Database software
+# PTDB v1.0.0 DOCUMENTATION
+This file contains a full reference of the Plain Text Database software.
 
-### REFERENCE
+### PTDB DOCUMENTATION
 
 ## Index
 * [License](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#license)
