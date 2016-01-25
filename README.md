@@ -123,7 +123,7 @@ def removeEntry(index)
 ```
 This method will remove an **entire** entry on a specified row (index).
 
-**NOTE: A FULL [REFERENCE](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
+**NOTE: A FULL [DOCUMENTATION](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
 #### Installation:
 ##### For Windows Users:
 * Download the lastest PTDB version available in the 'zip' format.
