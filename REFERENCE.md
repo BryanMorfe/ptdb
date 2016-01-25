@@ -4,15 +4,15 @@ This file contains a full reference of the Plain Text Database software
 ### REFERENCE
 
 ## Index
-* [License]()
-* [Global Functions]()
-* [A little about the Ptdb Object]()
-* [The Database Object]()
-  * [Properties]()
-  * [Methods]()
-* [Understanding Column's Attributes]()
-* [PTDB Examples And Explanations]()
-* [Credits]()
+* [License](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#license)
+* [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#global-functions)
+* [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#a-little-about-the-ptdb-object)
+* [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#the-database-object)
+  * [Properties](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#properties)
+  * [Methods](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#methods)
+* [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#understanding-columns-attributes)
+* [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations)
+* [Credits](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#credits)
 
 ### License
 The MIT License (MIT)
@@ -159,7 +159,7 @@ def saveDatabase()
 ```
 This method simply saves the database to a file, specified in the `file` property of the object.
 
-Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations]() section.
+Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations) section.
 
 #### Understanding Column's Attributes
 
