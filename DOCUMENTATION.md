@@ -139,6 +139,8 @@ def newEntry(titles, entries)
 ```
 This method adds a new entry with a specified **list** of `entries` to the database in a specified **list** of `titles`. They **MUST** be specified as a list, and values most be in the same position as their respective title. This method will save the database if it's finished successfully.
 
+**Note: All columns *must* be entered in this function, *except* those with an attribute of `AI` (*must* not be added) and `NULL` (may or may not be added). Adding a column with an attribute of `AI` will cause the function to return `False` and not add *anything*.**
+
 ```python
 def removeEntry(index)
 ```
@@ -162,6 +164,16 @@ This method simply saves the database to a file, specified in the `file` propert
 Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations) section.
 
 #### Understanding Column's Attributes
+A column attribute--those wrapped between square braquets--give a special meaning to a column. If you want to find out a little more keep reading.
+As of **now**, there only two attributes that mean something to PTDB;
+* AI
+* NULL
+
+AI: Means **Auto Increment**, and much like the Auto Increment from *MySQL*, it means that each new entry that you add will be incremented by one. It is important to add that a column with the attribute of `AI`, should **always** have a type of `INT`; Example: `[AI]ID(INT)`.
+**Note: Trying to add a custom value to a column with an attribute of `AI` will cause the specific method to return `False` and not work.**
+
+NULL: This attribute is very simple. All it means to the column is that it is **allowed** to have no value.
+**Note: When adding a new entry to the database, a column attribute of `NULL` is *not* necessary.**
 
 #### PTDB Examples And Explanations
 
