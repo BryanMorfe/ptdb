@@ -176,5 +176,80 @@ NULL: This attribute is very simple. All it means to the column is that it is **
 **Note: When adding a new entry to the database, a column attribute of `NULL` is *not* necessary.**
 
 #### PTDB Examples And Explanations
+Welcome to the examples section. In this section you will see some of the methods in practice and their expanations.
 
+Here are some examples using PTDB and their explanations:
+
+##### Creating Our Database
+
+```python
+from ptdb import createDatabase
+
+myDB = createDatabase('mydatabase') # Creates a new database 'mydatabase' but DOESN'T CREATE A FILE YET.
+
+# I don't like 'mydatabase' for a file name, so I'll change it to 'database' accessing the 'file' property of the Object
+myDB.file = 'database'
+
+# Now let's add some content in there (everytime a function that modifies the data in some way, it will save the file (if successful).
+myDB.addTitle('ID', 'INT', 'AI') # This create a single column called 'ID' with a type of 'INT' and an attribute of 'AI'
+
+myDB.addTitles(['Name', 'Lastname', 'Email', 'Password', 'Phone'], ['STRING', 'STRING', 'STRING', 'STRING', 'STRING'], ['NONE', 'NONE', 'NONE', 'NONE', 'NULL']) # This method creates all these columns with their respective name, type and attribute
+
+myDB.newEntry(['id', 'name', 'lastname', 'email', 'password'], [0, 'Bryan', 'Morfe', 'bryanmorfe@gmail.com', 'password1'])
+# The above method will return False and not create a new entry and will NOT save the file, because the column 'ID' has an attribute of 'AI'
+
+myDB.newEntry(['name', 'lastname', 'email', 'password'], ['Bryan', 'Morfe', 'bryanmorfe@gmail.com', 'password1'])
+# This method will work. the column 'ID' is letting its attribute work its magic, and we're not specifying a phone number.
+
+# Let's add a few more entries
+myDB.newEntry(['name', 'lastname', 'email', 'password', 'phone'], ['Gabriella', 'Ashton', 'gabriellaashton@gmail.com', 'password2', '9730000000'])
+myDB.newEntry(['name', 'lastname', 'email', 'password', 'phone'], ['Bernie', 'Carter', 'berniecarter@gmail.com', 'password3', '9730000000'])
+myDB.newEntry(['name', 'lastname', 'email', 'password'], ['Julie', 'Benson', 'juliebenson@gmail.com', 'password4'])
+# Those will add all those entries and save the file each time.
+```
+
+The resulting file `database` should be defined as follows:
+```
+[AI]ID(INT) Name Lastname Email Password [NULL]Phone
+0 Bryan Morfe bryanmorfe@gmail.com password1 
+1 Gabriella Ashton gabriellaashton@gmail.com password2 9730000000
+2 Bernie Carter berniecarter@gmail.com password3 9730000000
+3 Julie Benson juliebenson@gmail.com password4 
+```
+The above PTDB database will be used for our following examples.
+
+##### Creating a simple Login Validator
+```python
+from ptdb import parse
+
+def login(email, password):
+ # Returns true or false whether is logged successfully
+ 
+ # parse the database
+ myDB = parse('database')
+ 
+ #Check if email is in database
+ if myDB.isItemInColumn('email', email.lower()):
+  # If email is in the database, check the password for that entered email.
+  
+  dbPassword = myDB.getColumnItem('password', myDB.getRowIndex('email', email.lower()) 
+  # This above statement is saying; 'Get the password where the column email is 'email.lower()'
+  
+  # Now we compare the entered password with the one corresponding to that email, if they're equal, the login is successfully, else,    # it's not
+  if password == dbPassword:
+   return True
+  else:
+   return False
+ else:
+  # If email is not in database then return false.
+  return False
+  
+# Now we test the function login.
+if login('bryanmorfe@gmail.com', password1):
+ print("User logged successfully.")
+else:
+ print("Credentials are incorrect.")
+# Prints 'User logged successfully'
+```
 #### Credits
+PTDB, as of *now*, has been programmed solely by me, Bryan Morfe, but anyways I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
