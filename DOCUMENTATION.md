@@ -12,6 +12,9 @@ This file contains a full reference of the Plain Text Database software.
   * [Methods](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#methods)
 * [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#understanding-columns-attributes)
 * [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations)
+ * [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
+ * [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
+ * [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
 * [Credits](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#credits)
 
 ### License
@@ -218,7 +221,7 @@ The resulting file `database` should be defined as follows:
 ```
 The above PTDB database will be used for our following examples.
 
-##### Creating a simple Login Validator
+##### Creating a Simple Login Validator
 ```python
 from ptdb import parse
 
@@ -251,5 +254,50 @@ else:
  print("Credentials are incorrect.")
 # Prints 'User logged successfully'
 ```
+##### Modifying the Database Data
+
+For this example, we will simply modify the password in one of our entries.
+```python
+from ptdb import parse
+
+def changePassword(email, currentPassword, newPassword):
+ # This function will return True if we change the password in an entry or false if we couldn't.
+ 
+ # Before anything, we make sure that the currentPassword and the newPassword are different.
+ if currentPassword == newPassword:
+  return False
+  
+ # Now, we parse our data
+ myDB = parse('database')
+ 
+ # Now we check if the email is in the database
+ if myDB.isItemInColumn('email', email.lower()):
+  # Now we make sure that the currentPassword matches the one for that email
+  dbPassword = myDB.columnItem('password', myDB.getRowIndex('email', email.lower()))
+  if dbPassword == currentPassword:
+   # If it entered here, then we can change the password.
+   myDB.modifyEntry('password', myDB.getRowIndex('email', email.lower()), newPassword)
+   # The above method is saying; Replace the column 'Password' with 'newPassword', where the column 'Email', is 'email.lower()' and saves the file
+   return True
+ else:
+  return False
+ 
+if changePassword('gabriellaashton@gmail.com', 'password2', 'P@s5w0rd'):
+ print('Password has been changed successfully.')
+else:
+ print('There was an error changing your password.')
+# Prints 'Password has been changed successfully.'
+```
+
+After the execution of the above code, our new file should look like this:
+
+```
+[AI]ID(INT) Name Lastname Email Password [NULL]Phone
+0 Bryan Morfe bryanmorfe@gmail.com password1 
+1 Gabriella Ashton gabriellaashton@gmail.com P@s5w0rd 9730000000
+2 Bernie Carter berniecarter@gmail.com password3 9730000000
+3 Julie Benson juliebenson@gmail.com password4 
+```
+
 #### Credits
-PTDB, as of *now*, has been programmed solely by me, Bryan Morfe, but anyways I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
+PTDB, as of *now*, the idea behind PTDB is mine. It created iniatially for personal usage, but then I thought it could be useful for you developers our there too. Although PTDB has been programmed solely by me, Bryan Morfe,  I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
