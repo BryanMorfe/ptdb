@@ -82,7 +82,6 @@ from ptdb import parse # Most important thing to do is to import ptdb, remember 
 def greetPerson(email)
   # This function will greet a person if they're on out ptdb database.
   # Variables we will use
-  registered = False
   name = ''
   # Time to work with ptdb
   myDB = parse('database') # Will parse a file named 'database' (which we created before)
