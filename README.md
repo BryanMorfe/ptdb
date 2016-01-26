@@ -125,14 +125,14 @@ This method will remove an **entire** entry on a specified row (index).
 **NOTE: A FULL [DOCUMENTATION](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
 #### Installation:
 ##### For Windows Users:
-* Download the lastest PTDB version available in the 'zip' format.
+* [Download](https://github.com/BryanMorfe/ptdb/releases/) the lastest PTDB version available in the 'zip' format.
 * Extract the archive.
 * Open the Command Prompt as an administrator (cmd.exe).
 * Navigate to the resulting folder of the archive (where the .py files are) in the cmd. Example: If the folder is called PTDB and it's on the desktop, you write the command `cd c:\users\youruser\desktop\ptdb`, assuming the drive where windows is installed is 'C:\' and replacing 'youruser' for your current windows user.
 * Run the command `python setup.py install` and it should install.
 
 ##### For Linux:
-* Download the lastest PTDB version available in the 'tar.gz' format.
+* [Download](https://github.com/BryanMorfe/ptdb/releases/) the lastest PTDB version available in the 'tar.gz' format.
 * Extract the archive.
 * Open the Terminal Window.
 * Navigate to the resulting folder of the archive (where the .py files are), using the 'cd' command.
