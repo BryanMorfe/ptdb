@@ -4,18 +4,18 @@ This file contains a full reference of the Plain Text Database software.
 ### PTDB DOCUMENTATION
 
 ## Index
-* [License](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#license)
-* [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#global-functions)
-* [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#a-little-about-the-ptdb-object)
-* [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#the-database-object)
-  * [Properties](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#properties)
-  * [Methods](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#methods)
-* [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#understanding-columns-attributes)
-* [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations)
+* [License](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#license)
+* [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
+* [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
+* [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
+  * [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
+  * [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
+* [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns-attributes)
+* [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
  * [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
  * [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
  * [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
-* [Credits](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#credits)
+* [Credits](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#credits)
 
 ### License
 The MIT License (MIT)
@@ -164,7 +164,7 @@ def saveDatabase()
 ```
 This method simply saves the database to a file, specified in the `file` property of the object.
 
-Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/REFERENCE.md#ptdb-examples-and-explanations) section.
+Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations) section.
 
 #### Understanding Column's Attributes
 A column attribute--those wrapped between square braquets--give a special meaning to a column. If you want to find out a little more keep reading.
