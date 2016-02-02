@@ -25,7 +25,7 @@ After that, we need to give it a specific format for the PTDB parser to do its j
 * The titles of each column may or *may not* have an attribute, if it does, it's indicated between square brackets; `[Attribute]`
 * Then comes the name of the title, which can contain any characters, except for parentheses or brackets; `[, ], (, )`
 * Then comes the type, which is indicated by parentheses. These may be ommited if the type is string; `(INT)`
-* Each other title is separated by a *tab*; `Username Score[FLOAT]`
+* Each other title is separated by a *tab*; `Username Score(FLOAT)`
 * If done with titles, a ***new line*** is required for each row of values to be entered.
 * The values all go below their respective row (In tab spaces), each separated by a *tab key*;
 ```
