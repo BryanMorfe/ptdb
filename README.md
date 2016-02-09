@@ -1,24 +1,24 @@
 # PTDB
 ***PTDB--Plain Text Database-- Is a flat file database system written in python. When simplicity and functionality are required, use PTDB.***
 
-**NOTE: PTDB is compatible with python 2 and 3.**
+**NOTE: This README is always up to date with the lastest release, an update is always adviced.**
 
 ## How To Guide
 
 ### Index:
-* [Creating a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#creating-a-ptdb-database)
-  * [Manually](https://github.com/BryanMorfe/ptdb/blob/master/README.md#manually)
-  * [Using Python](https://github.com/BryanMorfe/ptdb/blob/master/README.md#through-python)
-* [Reading a PTDB Databasa](https://github.com/BryanMorfe/ptdb/blob/master/README.md#reading-a-ptdb-database)
-* [Writing to a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#writing-to-a-ptdb-database)
-* [Installing PTDB](https://github.com/BryanMorfe/ptdb/blob/master/README.md#installation)
+* 1. [Creating a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#1-creating-a-ptdb-database)
+  * 1.1. [Manually](https://github.com/BryanMorfe/ptdb/blob/master/README.md#11-manually)
+  * 1.2. [Using Python](https://github.com/BryanMorfe/ptdb/blob/master/README.md#12-through-python)
+* 2. [Reading a PTDB Databasa](https://github.com/BryanMorfe/ptdb/blob/master/README.md#2-reading-a-ptdb-database)
+* 3. [Writing to a PTDB Database](https://github.com/BryanMorfe/ptdb/blob/master/README.md#3-writing-to-a-ptdb-database)
+* 4. [Installing PTDB](https://github.com/BryanMorfe/ptdb/blob/master/README.md#4-installation)
 
-#### Creating a PTDB Database
+#### 1. Creating a PTDB Database
 ##### There are two ways to create a PTDB database; 
 1. Manually
 2. Through Python
 
-###### Manually:
+###### 1.1. Manually:
 
 To create a PTDB Database manually, all we need to do is create a new plain text file, example: `'database'`
 After that, we need to give it a specific format for the PTDB parser to do its job properly:
@@ -36,7 +36,7 @@ Ralph Donaldson rd@h.com  0000000
 ```
 **NOTE: IF IT APPEARS TO BE SPACES SEPARATING TITLES AND VALUE, A TABULATION IS NEEDED FOR PROPER PARSING. IT SOME CASES IT MAY NOT LOOK ALIGNED, BUT AS LONG AS EACH VALUE IS UNDER THEIR TITLE (IN TAB SPACES), IT WILL WORK FINE.**
 
-###### Through Python:
+###### 1.2. Through Python:
 
 The best way to ensure that your database is properly created is to do it using the code itself.
 The first thing to always do is importing PTDB (After installing it of course);
@@ -62,7 +62,7 @@ def createDatabase(name)
 ```
 This method simply returns an empty database object, with the name provided. *Note: It will not create the file until something has been added to it.*
 ```python
-def addTitle(title, type = 'STRING', attr = 'NONE')
+def addTitle(title, type='STRING', attr='NONE')
 ```
 This method adds a new column with its title to the database. The type and attr parameters are not needed unless they're different from the default. *Note: Each time this function is executed, a file representing the database is created or saved, depending on whether it exists or not.*
 ```python
@@ -74,7 +74,7 @@ def newEntry(titles, entries)
 ```
 This method is to add a new entry to the database. As the previews function, the parameters **must** be passed as lists. All titles that do not have an attribute of 'NULL' or 'AI' (Auto Increment), must be included in the list, as their values.
 
-#### Reading a PTDB Database
+#### 2. Reading a PTDB Database
 Reading a PTDB database is the most simple thing to do, whether you want to read a file or a string.
 ```python
 from ptdb import parse # Most important thing to do is to import ptdb, remember that.
@@ -111,7 +111,7 @@ This method returns the value of the specified column for an specified index.
 def getRowIndex(col, item)
 ```
 This method returns the index of the row where the specified column has a value of the specified item.
-#### Writing to a PTDB Database
+#### 3. Writing to a PTDB Database
 We already know a little bit about writing to a database from the [Creating a PTDB Database] Chapter, this will simply illustrate a little better the methods used specifically for writing.
 ```python
 def modifyEntry(col, index, newEntry)
@@ -122,8 +122,14 @@ def removeEntry(index)
 ```
 This method will remove an **entire** entry on a specified row (index).
 
+```python
+def set_file_to(name)
+```
+Changes or sets the filename of the database.
+
 **NOTE: A FULL [DOCUMENTATION](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md) FOR ALL THE FUNCTIONALITY OF PTDB IS AVAILABLE.**
-#### Installation:
+
+#### 4. Installation:
 ##### For Windows Users:
 * [Download](https://github.com/BryanMorfe/ptdb/releases/) the lastest PTDB version available in the 'zip' format.
 * Extract the archive.
