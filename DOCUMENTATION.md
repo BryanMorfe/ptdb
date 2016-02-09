@@ -1,3 +1,5 @@
+Updating documentation...
+
 # PTDB v1.0.0 DOCUMENTATION
 This file contains a full reference of the Plain Text Database software.
 
