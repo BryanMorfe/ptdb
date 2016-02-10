@@ -10,19 +10,20 @@ Note: This document is almost always kept up to date with the current version of
 
 ## Index
 * 1. [License](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#license)
-* 2. [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
-* 3. [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
-* 4. [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
-  * 4.1. [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
-  * 4.2. [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
-* 5. [Understanding Columns](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns)
-  * 5.1 [Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#attributes)
-  * 5.2 [Types](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#types)
-* 6. [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
- * 6.1. [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
- * 6.2. [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
- * 6.3. [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
-* 7. [Credits](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#credits)
+* 2. [How is the Data Parsed](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#how-is-the-data-parsed)
+* 3. [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
+* 4. [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
+* 5. [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
+  * 5.1. [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
+  * 5.2. [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
+* 6. [Understanding Columns](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns)
+  * 6.1 [Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#attributes)
+  * 6.2 [Types](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#types)
+* 7. [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
+ * 7.1. [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
+ * 7.2. [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
+ * 7.3. [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
+* 8. [Credits](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#credits)
 
 ### License
 The MIT License (MIT)
@@ -46,6 +47,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+### How is the Data Parsed
+Welcome! This is an overview of how the data is parsed into the object.
+
+This is important to know because if you don't have a basic knowledge of how the data is "recognized" by the code, how will you manipulate it?
+
+#### Columns
 
 ### Global Functions
 There are three main global functions that will help you work with PTDB.
@@ -426,9 +434,9 @@ Before calling this method, we need to make sure that our filename is set. Becau
 
 ###### Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations) section.
 
-#### Understanding Columns
+### Understanding Columns
 
-##### Attributes
+#### Attributes
 A column attribute--those wrapped between square braquets--give a special meaning to a column. If you want to find out a little more keep reading.
 
 As of **now**, four attributes can define a PTDB column;
@@ -449,7 +457,7 @@ DATE: This is almost self-explanatory. A column with this attribute will add the
 DEFAULT: This attribute basically adds a default value to a column which value is not specified.
 It works as follows: `[DEFAULT=value]column_name(TYPE)` means that `column_name` has a *default* value of `value`, and the code *casts* the value to the column's type `TYPE`. If the value is specified when adding a new entry, the default value is *ommited*.
 
-##### Types
+#### Types
 Types simply define the value type in a column.
 
 There are a couple of types supported by PTDB:
@@ -469,12 +477,12 @@ BOOL: A binary True or False value. Casted to a python bool object.
 
 ARRAY OF TYPE: Makes a list of any type; Ints, floats, strings or bools; It is defined as `([TYPE])`; Examples: `([INT])`, `([STRING])` or the array of strings shorthand `([])`. Casted to a Python list object.
 
-#### PTDB Examples And Explanations
+### PTDB Examples And Explanations
 Welcome to the examples section. In this section you will see some of the methods in practice and their expanations.
 
 Here are some examples using PTDB and their explanations:
 
-##### Creating Our Database
+#### Creating Our Database
 
 ```python
 from ptdb import createDatabase
@@ -534,7 +542,7 @@ The resulting file `database` should be defined as follows:
 
 The above PTDB database will be used for our following examples.
 
-##### Creating a Simple Login Validator
+#### Creating a Simple Login Validator
 ```python
 from ptdb import parse
 
@@ -567,50 +575,59 @@ else:
     print("Credentials are incorrect.")
 # Prints 'User logged successfully'
 ```
-##### Modifying the Database Data
+#### Modifying the Database Data
 
 For this example, we will simply modify the password in one of our entries.
 ```python
 from ptdb import parse
 
-def changePassword(email, currentPassword, newPassword):
- # This function will return True if we change the password in an entry or false if we couldn't.
+def change_password(email, current_password, new_password):
+    # This function will return True if we change the password in an entry or false if we couldn't.
  
- # Before anything, we make sure that the currentPassword and the newPassword are different.
- if currentPassword == newPassword:
-  return False
+    # Before anything, we make sure that the current_password and the new_password are different and have a value.
+    if current_password == new_password or not current_password or not new_password:
+        return False
   
- # Now, we parse our data
- myDB = parse('database')
+    # Now, we parse our data
+    my_db = parse('database')
  
- # Now we check if the email is in the database
- if myDB.isItemInColumn('email', email.lower()):
-  # Now we make sure that the currentPassword matches the one for that email
-  dbPassword = myDB.columnItem('password', myDB.getRowIndex('email', email.lower()))
-  if dbPassword == currentPassword:
-   # If it entered here, then we can change the password.
-   myDB.modifyEntry('password', myDB.getRowIndex('email', email.lower()), newPassword)
-   # The above method is saying; Replace the column 'Password' with 'newPassword', where the column 'Email', is 'email.lower()' and saves the file
-   return True
- else:
-  return False
- 
-if changePassword('gabriellaashton@gmail.com', 'password2', 'P@s5w0rd'):
- print('Password has been changed successfully.')
+    # Now we check if the email is in the database
+    if my_db.isItemInColumn('email', email.lower()):
+        # Now we make sure that the currentPassword matches the one for that email
+        db_password = my_db.columnItem('password', my_db.getRowIndex('email', email.lower()))
+        if db_password == current_password:
+            # If it entered here, then we can change the password.
+            my_db.modifyEntry('password', my_db.getRowIndex('email', email.lower()), new_password)
+            # The above method is saying; Replace the column 'Password' with 'new_password', where the column 'Email', is 'email.lower()' and saves the file
+            return True
+    else:
+        return False
+
+# Gabriella feels like her password is not secure enough, and she asked me to write this code for her.
+# She's my friend, so I said of course!
+
+# We first need Gaby's information
+gabys_email = 'gabriellaashton@gmail.com'
+gabys_password = 'password2'
+gabys_new_password = 'P@s5w0rd'
+
+if change_password(gabys_email, gabys_password, gabys_new_password):
+    print('Password has been changed successfully.')
 else:
- print('There was an error changing your password.')
-# Prints 'Password has been changed successfully.'
+    print('There was an error changing your password.')
+    
+# Prints 'Password has been changed successfully.' and the database is saved.
 ```
 
 After the execution of the above code, our new file should look like this:
 
 ```
-[AI]ID(INT) Name Lastname Email Password [NULL]Phone
-0 Bryan Morfe bryanmorfe@gmail.com password1 
-1 Gabriella Ashton gabriellaashton@gmail.com P@s5w0rd 9730000000
-2 Bernie Carter berniecarter@gmail.com password3 9730000000
-3 Julie Benson juliebenson@gmail.com password4 
+[AI]ID(INT) Name      Lastname    Email                      (NULL)Friends_Ids([INT])  Password    [DEFAULT=0]Admin(BOOL)
+0           Bryan     Morfe       bryanmorfe@gmail.com                                 password1   0 
+1           Gabriella Ashton      gabriellaashton@gmail.com  0,2                       P@s5w0rd    0
+2           Bernie    Carter      berniecarter@gmail.com     3                         password3   0
+3           Julie     Benson      juliebenson@gmail.com                                password4   1
 ```
 
-#### Credits
+### Credits
 PTDB: The idea behind PTDB is mine. It created iniatially for personal usage, but then I thought it could be useful for you developers our there too. Although PTDB, as of **now**, has been programmed solely by me, Bryan Morfe,  I do owe a 'Thank you' to a lot of people out the in the internet who have taught me a lot.
