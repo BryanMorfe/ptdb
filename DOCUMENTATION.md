@@ -10,7 +10,7 @@ Note: This document is almost always kept up to date with the current version of
 * 1. [License](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#license)
 * 2. [How is the Data Parsed](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#how-is-the-data-parsed)
   * 2.1. [Columns](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#columns)
-  * 3.1. [Items](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#items)
+  * 2.2. [Items](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#items)
 * 3. [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
 * 4. [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
 * 5. [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
