@@ -93,79 +93,305 @@ There are quite a few methods in the Database Object. After reading this section
 ```python
 def amountOfColumns()
 ```
-This is one of the simplest methods. It simply returns an int indication how many columns the database has.
+Returns an int with the amount of columns in the database.
+
+```python
+def set_file_to(name)
+```
+Sets or changes the filename of the database.
+
+**Parameters**
+```
+name: String
+    Filename to be set or changed to.
+```
+**Returns**
+```
+return: Int
+    Amount of columns.
+```
 
 ```python
 def isItemInColumn(col, item)
 ```
-This method returns a boolean value (true or false), whether it finds the specified `item` in a specified column `col`.
+Returns True or False if a specified item is in the specified column.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+item: String, Int, Float or Bool
+    item of the row.
+```
+**Returns**
+```
+return: Bool
+    If the item is found, True, if not, False.
+```
+**Notes**
+
+This method is NOT case sensitive. When looking for a column 'Name' with a value of 'John', passing ('id', 'john') will find it just fine, if it exists.
 
 ```python
-def getItemInColumn(col)
+def getItemsInColumn(col)
 ```
-This method returns all the **items** in a specified column `col`.
+Returns all the items for a specified column.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+```
+**Returns**
+```
+return: List
+    List of items.
+```
+**Notes**
+
+This method is NOT case sensitive. Looking for ('id') is the same as looking for ('ID').
+
+This method, however, returns the items just as written in the Database File; If Name has the values John and Casper, it will return ['John', 'Casper'], not ['john', 'casper'].
 
 ```python
 def getColumnType(col)
 ```
-This method returns the type (String, Int, Float...) of a column `col`.
+Returns the type of a specified column or an empty string.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+```
+**Returns**
+```
+return: String
+    Type of the column.
+```
+**Notes**
+
+This method is NOT case sensitive, looking for ('id') is the same as ('ID').
+
+This method, however, returns the Type just as written in the Database File; If it is [AI]Id(INT), it will return 'INT', not 'int'.
 
 ```python
 def getColumnAttribute(col)
 ```
-This method returns the attribute (none, ai, null) of a column `col`.
+Returns the attribute of a column or an empty string.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+```
+**Returns**
+```
+return: String
+    Attribute of the column.
+```
+**Notes**
+
+This method is NOT case sensitive. Looking for ('Name'), will produce the same result as looking for ('name').
+
+This method, however, returns the Attribute just as written in the Database File; If it is [AI]Id(INT), it will return 'AI', not 'ai'.
 
 ```python
 def columnHasAttribute(col, attr)
 ```
-This method returns true or false whether a specified column `col`, has an specified attribute `attr`.
+Returns True or False if a column has an attribute or not.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+attr: String
+    Attribute to find
+```
+**Returns**
+```
+return: Bool
+    True if the column has the attribute, otherwise False.
+```
+**Notes**
+
+This method is NOT case sensitive. Looking for ('id', 'ai') will produce the same result as ('ID', 'AI')
 
 ```python
 def getRowIndex(col, item)
 ```
-This method returns the index of a row, where a column `col` has a value of `item`.
+Returns the index (int) of a specified column item.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+item: Int, Float, String or Bool
+    Item in the column.
+```
+**Returns**
+```
+return: Int
+    Index of the row to which the item belongs to.
+```
+**Notes**
+
+This method is NOT case sensitive. Looking for ('Name', 'John') will produce the same result as ('name', 'john').
 
 ```python
 def getColumnItem(col, index)
 ```
 This method returns the item in a column `col`, in a specified `index`.
 
+**Parameters**
+```
+col: String
+    Name of the column.
+index: Int
+    Index for the row.
+```
+**Returns**
+```
+return: Int, Float, String, Bool or List
+    Item of the column.
+```
+**Notes**
+
+This method is NOT case sensitive. Looking for ('password', 5), will produce the same result as looking for ('Password', 5)
+
+This method, however, returns the Item just as written in the Database File; If the Password for index 5 is P@5sW0rD, it will return 'P@5sW0rD' instead of 'p@5sw0rd'. This is useful specially in these cases where you have to look for information like passwords or case sensitive codes.
+
 ```python
 def getDataForIndex(index)
 ```
-This method returns all the items or data in a specified `index`.
+Returns the value of all the columns in a specified row.
+
+**Parameters**
+```
+index: Int
+    Index for the row.
+```
+**Returns**
+```
+return: List
+    List of values.
+```
 
 ```python
-def modifyEntry(col, index, newEntry)
+def modifyEntry(col, index, new_entry)
 ```
-This method replaces a column `col` value in a specified `index` with a new value `newEntry`. This method will save the database if it's finished successfully.
+Modifies a column in a specified row.
+
+**Parameters**
+```
+col: String
+    Name of the column.
+index: Int
+    Index for the row.
+new_entry: Int, Float, String, Bool or List
+    New replacement value.
+```
+**Returns**
+```
+return: Bool
+    If modified successfully, True, if not, False.
+```
+**Notes**
+
+This method is NOT case sensitive when LOOKING for a column. Looking for ('name', 5, 'new_name') will produce the same result as ('NAME', 5, 'new_name'). However, the 'new_entry' parameter IS case sensitive. Passing 'John', will replace the current column's value with 'John', not 'john' or 'JOHN'.
 
 ```python
 def newEntry(titles, entries)
 ```
-This method adds a new entry with a specified **list** of `entries` to the database in a specified **list** of `titles`. They **MUST** be specified as a list, and values most be in the same position as their respective title. This method will save the database if it's finished successfully.
+Adds a new row to the database.
 
-**Note: All columns *must* be entered in this function, *except* those with an attribute of `AI` (*must* not be added) and `NULL` (may or may not be added). Adding a column with an attribute of `AI` will cause the function to return `False` and not add *anything*.**
+**Parameters**
+```
+titles: List
+    Names of the columns.
+entries: List
+    Value of each column.
+```
+**Returns**
+```
+return: Bool
+    True if successful, otherwise False.
+```
+
+**Validation**
+
+For a new entry to be valid, it needs to meet the following five conditions:
+* It must have as many entries as it has titles.
+* All passed titles MUST be in the database
+* A column with the attributes; AI and DATE cannot be passed.
+* A column with the attribute 'DEFAULT' MUST have a default value.
+* A column with the no attribute 'None' MUST be passed.
+            
+**Notes**
+
+This method is NOT case sensitive when LOOKING for the titles. Looking for ['Name', 'Lastname'] will produce the same result as ['name', 'lastname']. However, everything you pass in the list of entries, will be saved to the database as is, ['John', 'Appleseed'] is DIFFERENT than ['john', 'appleseed'].
 
 ```python
 def removeEntry(index)
 ```
-This method will delete **permanently** all the data in a specified index. After it's done, it saves the database.
+Removes **permanently** a specified row in the database.
+
+**Parameters**
+```
+index: Int
+    Index for the row.
+```
 
 ```python
-def addTitle(title, type = 'STRING', attr = 'NONE')
+def addTitle(title, type_='STRING', attr=None)
 ```
-This method adds a new column with the name title. This method can **only** be called if the database is new and has no data in it. The type and attr parameters can be omitted or should only be specified if the values are different from their default values.
+Adds a new column, if possible.
+
+**Parameters**
+```
+title: String
+    Name of the column.
+type_: String, Optional
+    Type of the column.
+attr: String, Optional
+    Attribute of the column.
+```
+**Returns**
+```
+return: Bool
+    If the new column is added successfully, True, otherwise, False.
+```
+**Notes**
+
+
 
 ```python
 def addTitles(titles, types, attrs)
 ```
-Unlike the last method, all the parameters are **obligatory** when executing this method. They **must** be specified as lists as each place in each list belong to each other respectfully.
+This method adds multiple columns to the database.
+
+**Parameters**
+```
+titles: List
+    Names of the columns.
+types: List
+    Type of each column.
+attrs: List
+    Attribute of each column.
+```
+**Returns**
+```
+return: Bool
+    True if successful, otherwise False.
+```
 
 ```python
 def saveDatabase()
 ```
-This method simply saves the database to a file, specified in the `file` property of the object.
+Saves all the content in the object to a file with the object's file name.
+
+**Notes**
+
+Before calling this method, we need to make sure that our filename is set. Because of that, when parsing a string, or creating a new Database Object, is *necessary* to set the filename with the method `set_file_to(name)`.
 
 Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations) section.
 
