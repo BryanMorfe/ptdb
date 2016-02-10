@@ -15,7 +15,9 @@ Note: This document is almost always kept up to date with the current version of
 * 4. [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
   * 4.1. [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
   * 4.2. [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
-* 5. [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns-attributes)
+* 5. [Understanding Columns](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns)
+  * 5.1 [Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#attributes)
+  * 5.2 [Types](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#types)
 * 6. [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
  * 6.1. [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
  * 6.2. [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
@@ -422,20 +424,32 @@ Saves all the content in the object to a file with the object's file name.
 
 Before calling this method, we need to make sure that our filename is set. Because of that, when parsing a string, or creating a new Database Object, is *necessary* to set the filename with the method `set_file_to(name)`.
 
+###### Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations) section.
 
-Those are all the methods in the Database Object. For examples on how to use them, go to the [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations) section.
+#### Understanding Columns
 
-#### Understanding Column's Attributes
+##### Attributes
 A column attribute--those wrapped between square braquets--give a special meaning to a column. If you want to find out a little more keep reading.
-As of **now**, there only two attributes that mean something to PTDB;
+As of **now**, there four attributes that define a PTDB column;
 * AI
 * NULL
+* DATE
+* DEFAULT=value
 
-AI: Means **Auto Increment**, and much like the Auto Increment from *MySQL*, it means that each new entry that you add will be incremented by one. It is important to add that a column with the attribute of `AI`, should **always** have a type of `INT`; Example: `[AI]ID(INT)`.
+AI: Means **Auto Increment**, and much like the Auto Increment from *MySQL*, it means that each new entry that you add will be incremented by one. It is important to add that a column with the attribute of `AI`, should **always** have a type of `INT`; Example: `[AI]ID(INT)`, or the Database is doomed to fail at any point.
 **Note: Trying to add a custom value to a column with an attribute of `AI` will cause the specific method to return `False` and not work.**
 
 NULL: This attribute is very simple. All it means to the column is that it is **allowed** to have no value.
 **Note: When adding a new entry to the database, a column attribute of `NULL` is *not* necessary.**
+
+DATE: This is almost self-explanatory. A column with this attribute will add the date in which the entry was created (if created through the code).
+**Note: A column with this attribute is unmodifiable. Trying to do so will result in an error.**
+
+DEFAULT: This attribute basically adds a default value to a column which value is not specified.
+It works as follows: `[DEFAULT=value]column_name(TYPE)` means that `column_name` has a *default* value of `value`, and the code *casts* the value to the column's type `TYPE`. If the value is specified when adding a new entry, the default value is *ommited*.
+
+##### Types
+
 
 #### PTDB Examples And Explanations
 Welcome to the examples section. In this section you will see some of the methods in practice and their expanations.
