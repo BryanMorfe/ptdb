@@ -72,7 +72,7 @@ The Ptdb Object simply stores a column with its items in its properties.
 class Ptdb
 ```
 The properties hold the title, attribute, type and a list of the items of each column.
-**This class is for internal use of the module only.**
+**This object is for internal use of the module only.**
 
 ### The Database Object
 The Database Object basically handles all of the functionality of the PTDB parser, along with holding all the data.
@@ -479,15 +479,15 @@ Here are some examples using PTDB and their explanations:
 ```python
 from ptdb import createDatabase
 
-myDB = createDatabase('mydatabase') # Creates a new database 'mydatabase' but DOESN'T CREATE A FILE YET.
+my_db = createDatabase('mydatabase')  # Creates a new database 'mydatabase' but DOESN'T CREATE A FILE YET.
 
-# I don't like 'mydatabase' for a file name, so I'll change it to 'database' accessing the 'file' property of the Object
-myDB.file = 'database'
+# I don't like 'mydatabase' for a file name, so I'll change it to 'database' accessing the 'set_file_to' method of the Object.
+my_db.set_file_to('database')
 
-# Now let's add some content in there (everytime a function that modifies the data in some way, it will save the file (if successful).
-myDB.addTitle('ID', 'INT', 'AI') # This create a single column called 'ID' with a type of 'INT' and an attribute of 'AI'
+# Now let's add some content in there (everytime a method that modifies the data in some way is called, it will save the file (if successful).
+myDB.addTitle('ID', type_='INT', attr='AI') # This create a single column called 'ID' with a type of 'INT' and an attribute of 'AI'
 
-myDB.addTitles(['Name', 'Lastname', 'Email', 'Password', 'Phone'], ['STRING', 'STRING', 'STRING', 'STRING', 'STRING'], ['NONE', 'NONE', 'NONE', 'NONE', 'NULL']) # This method creates all these columns with their respective name, type and attribute
+myDB.addTitles(['Name', 'Lastname', 'Email', 'Friends_Ids', 'Password', 'Admin'], ['STRING', 'STRING', 'STRING', '[INT]', 'STRING', 'BOOL'], [None, None, None, 'NULL', None, 'DEFAULT=0']) # This method creates all these columns with their respective name, type and attribute
 
 myDB.newEntry(['id', 'name', 'lastname', 'email', 'password'], [0, 'Bryan', 'Morfe', 'bryanmorfe@gmail.com', 'password1'])
 # The above method will return False and not create a new entry and will NOT save the file, because the column 'ID' has an attribute of 'AI'
