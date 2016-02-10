@@ -90,13 +90,15 @@ The `file` property simply holds the name of the file containing all the data, o
 #### Methods
 There are quite a few methods in the Database Object. After reading this section you will be familiar with PTDB and will be able to do anything you want with it.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def amountOfColumns()
 ```
 Returns an int with the amount of columns in the database.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def set_file_to(name)
 ```
@@ -113,7 +115,8 @@ return: Int
     Amount of columns.
 ```
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def isItemInColumn(col, item)
 ```
@@ -135,7 +138,8 @@ return: Bool
 
 This method is NOT case sensitive. When looking for a column 'Name' with a value of 'John', passing ('id', 'john') will find it just fine, if it exists.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getItemsInColumn(col)
 ```
@@ -157,7 +161,8 @@ This method is NOT case sensitive. Looking for ('id') is the same as looking for
 
 This method, however, returns the items just as written in the Database File; If Name has the values John and Casper, it will return ['John', 'Casper'], not ['john', 'casper'].
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getColumnType(col)
 ```
@@ -179,7 +184,8 @@ This method is NOT case sensitive, looking for ('id') is the same as ('ID').
 
 This method, however, returns the Type just as written in the Database File; If it is [AI]Id(INT), it will return 'INT', not 'int'.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getColumnAttribute(col)
 ```
@@ -201,7 +207,8 @@ This method is NOT case sensitive. Looking for ('Name'), will produce the same r
 
 This method, however, returns the Attribute just as written in the Database File; If it is [AI]Id(INT), it will return 'AI', not 'ai'.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def columnHasAttribute(col, attr)
 ```
@@ -223,7 +230,8 @@ return: Bool
 
 This method is NOT case sensitive. Looking for ('id', 'ai') will produce the same result as ('ID', 'AI')
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getRowIndex(col, item)
 ```
@@ -245,7 +253,8 @@ return: Int
 
 This method is NOT case sensitive. Looking for ('Name', 'John') will produce the same result as ('name', 'john').
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getColumnItem(col, index)
 ```
@@ -269,7 +278,8 @@ This method is NOT case sensitive. Looking for ('password', 5), will produce the
 
 This method, however, returns the Item just as written in the Database File; If the Password for index 5 is P@5sW0rD, it will return 'P@5sW0rD' instead of 'p@5sw0rd'. This is useful specially in these cases where you have to look for information like passwords or case sensitive codes.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def getDataForIndex(index)
 ```
@@ -286,7 +296,8 @@ return: List
     List of values.
 ```
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def modifyEntry(col, index, new_entry)
 ```
@@ -310,7 +321,8 @@ return: Bool
 
 This method is NOT case sensitive when LOOKING for a column. Looking for ('name', 5, 'new_name') will produce the same result as ('NAME', 5, 'new_name'). However, the 'new_entry' parameter IS case sensitive. Passing 'John', will replace the current column's value with 'John', not 'john' or 'JOHN'.
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def newEntry(titles, entries)
 ```
@@ -342,7 +354,8 @@ For a new entry to be valid, it needs to meet the following five conditions:
 
 This method is NOT case sensitive when LOOKING for the titles. Looking for ['Name', 'Lastname'] will produce the same result as ['name', 'lastname']. However, everything you pass in the list of entries, will be saved to the database as is, ['John', 'Appleseed'] is DIFFERENT than ['john', 'appleseed'].
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def removeEntry(index)
 ```
@@ -354,7 +367,8 @@ index: Int
     Index for the row.
 ```
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def addTitle(title, type_='STRING', attr=None)
 ```
@@ -375,7 +389,8 @@ return: Bool
     If the new column is added successfully, True, otherwise, False.
 ```
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def addTitles(titles, types, attrs)
 ```
@@ -396,7 +411,8 @@ return: Bool
     True if successful, otherwise False.
 ```
 
-###### Method Declaration:
+
+##### Method Declaration:
 ```python
 def saveDatabase()
 ```
