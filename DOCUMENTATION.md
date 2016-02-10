@@ -6,18 +6,18 @@ This file contains a full reference of the Plain Text Database software.
 ### PTDB DOCUMENTATION
 
 ## Index
-* [License](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#license)
-* [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
-* [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
-* [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
-  * [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
-  * [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
-* [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns-attributes)
-* [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
- * [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
- * [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
- * [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
-* [Credits](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#credits)
+* 1. [License](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#license)
+* 2. [Global Functions](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#global-functions)
+* 3. [A little about the Ptdb Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#a-little-about-the-ptdb-object)
+* 4. [The Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object)
+  * 4.1. [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
+  * 4.2. [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
+* 5. [Understanding Column's Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns-attributes)
+* 6. [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
+ * 6.1. [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
+ * 6.2. [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
+ * 6.3. [Modifying the Database Data](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#modifying-the-database-data)
+* 7. [Credits](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#credits)
 
 ### License
 The MIT License (MIT)
