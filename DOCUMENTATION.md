@@ -1,7 +1,10 @@
 Updating documentation...
 
-# PTDB v1.0.0 DOCUMENTATION
-This file contains a full reference of the Plain Text Database software.
+# PTDB DOCUMENTATION
+
+Note: This document is almost always kept up to date with the current version of PTDB.
+
+**Current Version: 1.1**
 
 ### PTDB DOCUMENTATION
 
@@ -48,18 +51,17 @@ There are three main global functions that will help you work with PTDB.
 ```python
 def parseString(string)
 ```
-The above function takes a string as a parameter, and parses it for PTDB use.
-This function returns a new Database Object, which later can be manipulated as needed.
+The above function takes a string as a parameter, and parses it to a [Database Object](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#the-database-object).
 
 ```python
 def parse(file)
 ```
-Much like the last function, except that this one parses a file instead of a string. It also returns a Database Object, with the exception that the name of the file is also added into the properties of the object (the filename can be modified).
+Much like the last function, except that this one parses a file instead of a string. It also returns a Database Object, with the exception that the name of the file is also added into the properties of the object (the filename can be modified with the method `set_file_to(name)`).
 
 ```python
-def createDatabase(name)
+def createDatabase(name=None)
 ```
-This function creates an empty Database Object and returns it, to then be manipulated later. The parameter `name` is passed to be set as the filename when the file is saved.
+This function creates an empty Database Object and returns it to be manipulated later. The parameter `name`, optional, sets the filename.
 
 ### A little about the Ptdb Object
 The Ptdb Object simply stores a column with its items in its properties.
@@ -68,6 +70,7 @@ The Ptdb Object simply stores a column with its items in its properties.
 class Ptdb
 ```
 The properties hold the title, attribute, type and a list of the items of each column.
+**This class is for internal use of the module only.**
 
 ### The Database Object
 The Database Object basically handles all of the functionality of the PTDB parser, along with holding all the data.
@@ -82,9 +85,7 @@ file = ''
 ```
 The `database` property holds a list of all the columns in the database (A list of Ptdb Objects). This is **not** to be modified, since all the methods below will do it in a more semantically correct way.
 
-The `file` property simply holds the name of the file containing all the data, or simply a filename to be set to a new file. This property should **only** be modified if:
-1. A string was parsed, but you want to save a new file.
-2. If you want to change the filename of your file currently holding the data.
+The `file` property simply holds the name of the file containing all the data, or simply a filename to be set to a new file. This property should **not** be modified, instead, you use the method `set_file_to(name)`.
 
 #### Methods
 There are quite a few methods in the Database Object. After reading this section you will be familiar with PTDB and will be able to do anything you want with it.
