@@ -1,5 +1,3 @@
-Updating documentation...
-
 # PTDB DOCUMENTATION
 
 Note: This document is almost always kept up to date with the current version of PTDB.
@@ -17,8 +15,8 @@ Note: This document is almost always kept up to date with the current version of
   * 5.1. [Properties](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#properties)
   * 5.2. [Methods](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#methods)
 * 6. [Understanding Columns](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns)
-  * 6.1 [Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#attributes)
-  * 6.2 [Types](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#types)
+  * 6.1. [Attributes](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#attributes)
+  * 6.2. [Types](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#types)
 * 7. [PTDB Examples And Explanations](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#ptdb-examples-and-explanations)
  * 7.1. [Creating Our Database](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-our-database)
  * 7.2. [Creating a Simple Login Validator](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#creating-a-simple-login-validator)
@@ -51,9 +49,30 @@ SOFTWARE.
 ### How is the Data Parsed
 Welcome! This is an overview of how the data is parsed into the object.
 
-This is important to know because if you don't have a basic knowledge of how the data is "recognized" by the code, how will you manipulate it?
+This is important to know because if you don't know how the code formats the data it will be hard to manipulate and know what's going on.
 
 #### Columns
+The columns are fairly simple. 
+
+They can have an attribute; these attributes are stored as strings, when present; Example: `AI`, `DATE`. If the column has no attributes, the attribute is `None`.
+
+They have a title or name, stores as a string; Example: `Name`, `Password`.
+
+They *must* have a type; these are always present. They vary from Int, Float, String, Bool, or Array, and are stored as strings; Example: `INT`, `STRING`, `[FLOAT]`.
+
+#### Items
+On the other hand, the items of the column can take many different format that depends on the type of the column.
+
+If a column's type is `INT`, all the items will be formated as such, and should be address as an int rather than a string or float.
+If a column has an attribute of `NULL` it is allowed to have NO value. These items are address as `None` in the code.
+
+A column with the type `'STRING'` and an item with the value of 25, should be addressed as `'25'`, if the type of that column was `'INT'`, the item should be addressed as `25`. In the same way, a `'FLOAT'` should be addressed as `25.0`.
+
+Bools: In the file, bools are stores with 1's and 0's, representing True and False respectfully. These items in the code are address in the python way; `True` or `False`.
+
+Arrays: These files are separated by a comma (,) in the file, but in the code they are addressed as lists. Examples; An array of ints, `'[INT]'` should be addressed in this format `[5, 6, 7]`, an array of strings, `'[STRING]'` would be `['5', '6', 'seven']`.
+
+###### Note: To learn fully about the column's attributes and types, [click here](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md#understanding-columns).
 
 ### Global Functions
 There are three main global functions that will help you work with PTDB.
