@@ -524,12 +524,14 @@ my_db.newEntry(
 
 The resulting file `database` should be defined as follows:
 ```
-[AI]ID(INT) Name Lastname Email Password [NULL]Phone
-0 Bryan Morfe bryanmorfe@gmail.com password1 
-1 Gabriella Ashton gabriellaashton@gmail.com password2 9730000000
-2 Bernie Carter berniecarter@gmail.com password3 9730000000
-3 Julie Benson juliebenson@gmail.com password4 
+[AI]ID(INT) Name      Lastname    Email                      (NULL)Friends_Ids([INT])  Password    [DEFAULT=0]Admin(BOOL)
+0           Bryan     Morfe       bryanmorfe@gmail.com                                 password1   0 
+1           Gabriella Ashton      gabriellaashton@gmail.com  0,2                       password2   0
+2           Bernie    Carter      berniecarter@gmail.com     3                         password3   0
+3           Julie     Benson      juliebenson@gmail.com                                password4   1
 ```
+**Note: The file will NOT look aligned like that, I manually aligned for presentation purposes.**
+
 The above PTDB database will be used for our following examples.
 
 ##### Creating a Simple Login Validator
@@ -542,27 +544,27 @@ def login(email, password):
     # parse the database
     my_db = parse('database')
  
- #Check if email is in database
- if myDB.isItemInColumn('email', email.lower()):
-  # If email is in the database, check the password for that entered email.
+    # Check if email is in database
+    if my_db.isItemInColumn('email', email.lower()):
+        # If email is in the database, check the password for that entered email.
   
-  dbPassword = myDB.getColumnItem('password', myDB.getRowIndex('email', email.lower()) 
-  # This above statement is saying; 'Get the password where the column email is 'email.lower()'
+        db_password = my_db.getColumnItem('password', my_db.getRowIndex('email', email.lower()) 
+        # This above statement is saying; 'Get the password of the row where the column email is 'email.lower()'
   
-  # Now we compare the entered password with the one corresponding to that email, if they're equal, the login is successfully, else,    # it's not
-  if password == dbPassword:
-   return True
-  else:
-   return False
- else:
-  # If email is not in database then return false.
-  return False
+        # Now we compare the entered password with the one corresponding to that email, if they're equal, the login is successfully,          # else, it's not
+        if password == dbPassword:
+            return True
+        else:
+            return False
+    else:
+        # If email is not in database then return false.
+        return False
   
 # Now we test the function login.
 if login('bryanmorfe@gmail.com', 'password1'):
- print("User logged successfully.")
+    print("User logged successfully.")
 else:
- print("Credentials are incorrect.")
+    print("Credentials are incorrect.")
 # Prints 'User logged successfully'
 ```
 ##### Modifying the Database Data
