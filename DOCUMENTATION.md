@@ -430,7 +430,8 @@ Before calling this method, we need to make sure that our filename is set. Becau
 
 ##### Attributes
 A column attribute--those wrapped between square braquets--give a special meaning to a column. If you want to find out a little more keep reading.
-As of **now**, there four attributes that define a PTDB column;
+
+As of **now**, four attributes can define a PTDB column;
 * AI
 * NULL
 * DATE
@@ -449,7 +450,24 @@ DEFAULT: This attribute basically adds a default value to a column which value i
 It works as follows: `[DEFAULT=value]column_name(TYPE)` means that `column_name` has a *default* value of `value`, and the code *casts* the value to the column's type `TYPE`. If the value is specified when adding a new entry, the default value is *ommited*.
 
 ##### Types
+Types simply define the value type in a column.
 
+There are a couple of types supported by PTDB:
+* INT
+* FLOAT
+* STRING
+* BOOL
+* ARRAY OF TYPE
+
+INT: Is a number with no decimal points. Casted to a Python int object.
+
+FLOAT: A number with a floating point or decimals. Casted to a python float object.
+
+STRING: An array of characters. Casted to a python str object.
+
+BOOL: A binary True or False value. Casted to a python bool object.
+
+ARRAY OF TYPE: Makes a list of any type; Ints, floats, strings or bools; It is defined as `([TYPE])`; Examples: `([INT])`, `([STRING])` or the array of strings shorthand `([])`. Casted to a Python list object.
 
 #### PTDB Examples And Explanations
 Welcome to the examples section. In this section you will see some of the methods in practice and their expanations.
