@@ -16,8 +16,12 @@ Global Functions
 'parse_string': Parses a string.
 'create_database': Creates a new Database Object.
 
-Minor Update 1
---------------
+Major Update
+------------
+Major Changes:
+    * Database object has been renamed to PTDBDatabase.
+    * Ptdb object has been renamed to PTDBColumn.
+    * All methods and functions have been renamed to conform to PEP 8.
 New Features:
     * New type for columns: Bool, Arrays of Ints, Floats, Booleans, and Strings
     * New attributes: DATE, DEFAULT
@@ -49,12 +53,281 @@ as easy as possible.
 
 import time
 
-# Wildcard imports these three functions.
-__all__ = ['parse', 'parse_string', 'create_database']
+# Wildcard imports the PTDB Object.
+__all__ = ['PTDB']
 
 
 # Declaration of Objects
-class Ptdb:
+class PTDB:
+    """Stores a column, its attribute, type and items
+
+    Parameters
+    ----------
+    column: String
+        Name of the column.
+
+    type_: String
+        Type of the column.
+
+    attr: String
+        Attribute of the column.
+
+    Other Attributes
+    ----------------
+    items: String, Int, Float, List or None
+        Contains all the items of the column.
+
+    """
+
+    # Private global functions are defined next
+    def _convert_element_to_type(self, list_, type_):
+        new_list = []
+        if type_.upper() == 'INT':
+            try:
+                new_list = [int(item) for item in list_]
+            except ValueError:
+                print('Error: One or more items have an invalid type.')
+        elif type_.upper() == 'FLOAT':
+            try:
+                new_list = [float(item) for item in list_]
+            except ValueError:
+                print('Error: One or more items have an invalid type.')
+        elif type_.upper() == 'STRING':
+            new_list = list_
+        elif type_.upper() == 'BOOL':
+            try:
+                new_list = [bool(int(item)) for item in list_]
+            except ValueError:
+                print('Error: One or more items have an invalid type.')
+        else:
+            raise ValueError('Invalid column type.')
+        return new_list
+
+    def _assign_column_type(self, item, type_):
+        if type_.upper() == 'INT':
+            try:
+                return int(item)
+            except ValueError:
+                print('One or more items have an invalid type.')
+        elif type_.upper() == 'FLOAT':
+            try:
+                return float(item)
+            except ValueError:
+                print('One or more items have an invalid type.')
+        elif type_.upper() == 'STRING':
+            try:
+                return str(item)
+            except ValueError:
+                print('One or more items have an invalid type.')
+        elif type_.upper() == 'BOOL':
+            try:
+                return bool(int(item))
+            except ValueError:
+                print('One or more items have an invalid type.')
+        elif type_.upper() == '[INT]':
+            list_ = item.split(',')
+            list_ = _convert_element_to_type(list_, 'INT')
+            return list_
+        elif type_.upper() == '[FLOAT]':
+            list_ = item.split(',')
+            list_ = _convert_element_to_type(list_, 'FLOAT')
+            return list_
+        elif type_.upper() == '[STRING]' or type_.upper() == '[]':
+            list_ = item.split(',')
+            return list_
+        elif type_.upper() == '[BOOL]':
+            list_ = item.split(',')
+            list_ = _convert_element_to_type(list_, 'BOOL')
+            return list_
+        else:
+            raise TypeError('The type of the column is invalid.')
+
+    def _strip_new_line(self, string):
+        new_string = ''  # This is used to create a copy of the string with the changes made
+
+        # This conditions checks whether the finally ends with '\n' or '\t'
+        if string.endswith('\n') or string.endswith('\t'):
+            # If it enters, then add all the characters to the newString, except for the last one.
+            new_string = string[:-1]
+
+        # Finally, it returns the newString
+        return new_string
+
+    def _format_data_for_saving(database):
+        # Formats a string for PTDB
+        new_str = ''
+        i = 0
+        for data in database:
+            if data.attr is not None:
+                new_str += '[' + data.attr.upper() + ']'
+            new_str += data.title
+            if data.type_.upper() != 'STRING':
+                new_str += '(' + data.type_.upper() + ')'
+            new_str += '\t'
+        new_str = _strip_new_line(new_str) + '\n'
+
+        while i < len(database[0].items):
+            j = 0
+            while j < len(database):
+                if database[j].type_.startswith('[') and database[j].items[i] is not None:
+                    new_str += ','.join(map(str, database[j].items[i]))
+                    new_str += '\t'
+                    j += 1
+                    continue
+                try:
+                    if database[j].items[i] is not None:
+                        if database[j].type_.upper() == 'BOOL':
+                            if database[j].items[i]:
+                                new_str += '1'
+                            else:
+                                new_str += '0'
+                        else:
+                            new_str += str(database[j].items[i])
+                except IndexError:
+                    break
+                new_str += '\t'
+                j += 1
+            new_str = _strip_new_line(new_str) + '\n'
+            i += 1
+
+        return _strip_new_line(new_str)
+
+    def _save_file(self, file_, string):
+        with open(file_, 'w') as db_:
+            db_.write(string)
+
+    # End of private global functions
+
+
+    # Public Global Functions are defined next
+    def parse_string(self, string):
+        """This function parses a string into a Database Object.
+
+        Parameters
+        ----------
+        string: String
+            Name of the column
+
+        Return
+        ------
+        return: PTDBDatabase Object
+            PTDBDatabase Object containing all the data.
+
+        """
+        list_of_lines = string.split('\n')  # Split the file string in files.
+        first_line = list_of_lines[0]  # The first line contains the columns.
+        database = []  # This empty list will be filled with the columns data.
+        i = 0  # This is counter will be used through the entire parsing process.
+
+        # This first loop is for getting all the columns, their types and attributes.
+        while i < len(first_line):
+            # These are some temporary variables for use within the loop
+            temp_attr = ''
+            temp_title = ''
+            temp_type = ''
+
+            # This is a condition checks if it's a new element separator
+            if first_line[i] == '\t':
+                i += 1  # Go to the next column
+                continue
+
+            # This condition checks whether there's a predefined attribute for the particular column
+            if first_line[i] == '[' and first_line[i + 1] != ']':
+                i += 1
+                # This loop stores the name of the attribute without the square brackets.
+                while first_line[i] != ']':
+                    temp_attr += first_line[i]
+                    i += 1
+                i += 1
+            else:
+                # If no attribute is specified, then add the default None
+                temp_attr = None
+
+            # Appends the title until a type starts, or a new column, or it's the end of the string.
+            while i < len(first_line) and first_line[i] != '(' and first_line[i] != '\t':
+                temp_title += first_line[i]
+                i += 1
+
+            # This condition is True if it still has data to process.
+            if i < len(first_line):
+                # Checking for a type start.
+                if first_line[i] == '(':
+                    i += 1
+                    # Store it until the end of the type is reached.
+                    while first_line[i] != ')':
+                        temp_type += first_line[i]
+                        i += 1
+                    i += 1
+                else:
+                    temp_type = 'STRING'  # If the type is not specified, default to 'STRING'.
+            else:
+                temp_type = 'STRING'  # If we reached the end of the file, then default to 'STRING'.
+            # Add this column to a list of the Ptdb Object, which stores a column, its attribute, type, and items.
+            database.append(PTDBColumn(temp_title, temp_type, temp_attr))
+
+        # Reset the counters
+        i = 1  # This is set to 1 because 0 is the line we already used to store the columns, attributes and types.
+        j = 0  # This will be used for parsing the items in each column
+        # In this loop the items will be parsed and added to the Ptdb Object.
+        while i < len(list_of_lines):
+            items = list_of_lines[i].split('\t')  # Get all items in a row by splitting them by tabs.
+            # This loop will go through each title and append each corresponding item to it.
+            while j < len(items):
+                # This will be true if the item is an empty string.
+                if not items[j]:
+                    database[j].items.append(None)  # Sets that item to None
+                else:
+                    # If the item is not empty, then let's add a type cast to it, depending on its column type.
+                    database[j].items.append(_assign_column_type(items[j], database[j].type_))
+                j += 1  # Moves on to the next column
+            j = 0  # Restarts to the first column.
+            i += 1  # To get the next list of items.
+
+        # Finally, this function returns a Database Object with all the data that was parsed.
+        return PTDBDatabase(database)
+
+    def parse(self, file_):
+        """Parses a file into a PTDBDatabase Object.
+
+        Parameters
+        ----------
+        file_: File
+            Text file to be parsed
+
+        Return
+        ------
+        return: PTDBDatabase Object
+            PTDBDatabase Object containing all the data
+
+        """
+        db_ = open(file_, 'r')  # This opens a file
+        string = db_.read()  # This gets the string of the file
+        db_.close()  # This closes the file to free up the memory
+
+        new_database = parse_string(string)  # This parses the string from the file
+        new_database.set_file_to(file_)  # This sets the filename of 'new_database'.
+
+        # Finally, it returns the Database Object.
+        return new_database
+
+    def create_database(name=None):
+        """Creates an empty Database Object.
+
+        Parameters
+        ----------
+        name: String, Optional
+            Filename to be set on the Database
+
+        Return
+        ------
+        return: Database Object
+            An empty Database
+
+        """
+        return PTDBDatabase([], name)
+
+
+class PTDBColumn:
     """Stores a column, its attribute, type and items
 
     Parameters
@@ -76,12 +349,12 @@ class Ptdb:
     """
     def __init__(self, column, type_, attr):
         self.column = column  # This is the name of the column
-        self.type_ = type_  # This is the type of the column--STRING, INT, FLOAT...
-        self.attr = attr    # This is the attribute of the column--AI, NULL...
-        self.items = []     # This is the list of items of the column
+        self.type_ = type_    # This is the type of the column--STRING, INT, FLOAT...
+        self.attr = attr      # This is the attribute of the column--AI, NULL...
+        self.items = []       # This is the list of items of the column
 
 
-class Database:
+class PTDBDatabase:
     """Contains all the data, attributes and methods to operate the database.
 
     Parameters
@@ -137,7 +410,7 @@ class Database:
             Contains the filename of the database or None
         """
         self.database = database  # List of columns
-        self.file = file          # Filename
+        self.file = file          # File name
 
     def amount_of_columns(self):
         """Returns the amount of columns in the database."""
