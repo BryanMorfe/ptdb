@@ -577,11 +577,11 @@ def login(email, password):
     if my_db.isItemInColumn('email', email.lower()):
         # If email is in the database, check the password for that entered email.
   
-        db_password = my_db.getColumnItem('password', my_db.getRowIndex('email', email.lower()) 
+        db_password = my_db.getColumnItem('password', my_db.getRowIndex('email', email.lower())) 
         # This above statement is saying; 'Get the password of the row where the column email is 'email.lower()'
   
         # Now we compare the entered password with the one corresponding to that email, if they're equal, the login is successfully,          # else, it's not
-        if password == dbPassword:
+        if password == db_password:
             return True
         else:
             return False
@@ -615,7 +615,7 @@ def change_password(email, current_password, new_password):
     # Now we check if the email is in the database
     if my_db.isItemInColumn('email', email.lower()):
         # Now we make sure that the currentPassword matches the one for that email
-        db_password = my_db.columnItem('password', my_db.getRowIndex('email', email.lower()))
+        db_password = my_db.getColumnItem('password', my_db.getRowIndex('email', email.lower()))
         if db_password == current_password:
             # If it entered here, then we can change the password.
             my_db.modifyEntry('password', my_db.getRowIndex('email', email.lower()), new_password)
