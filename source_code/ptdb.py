@@ -603,7 +603,7 @@ class Database:
         if can_add_title or (not can_add_title and attr is not None and attr.upper() == 'NULL'):
             # If enters then add the new title and save the database
             self.database.append(Ptdb(title, type_, attr))
-            self.saveDatabase()
+            self.save_database()
             can_add_title = True
 
         # Returns true if successfully, false otherwise.
