@@ -3,7 +3,7 @@ PTDB Module
 -----------
 This module parses a text file with a specific format and loads it into a Database Object.
 
-Current Version: 1.1
+Current Version: 2.0
 
 Objects
 -------
@@ -13,8 +13,8 @@ Objects
 Global Functions
 ----------------
 'parse': Parses a text file.
-'parseString': Parses a string.
-'createDatabase': Creates a new Database Object.
+'parse_string': Parses a string.
+'create_database': Creates a new Database Object.
 
 Minor Update 1
 --------------
@@ -50,7 +50,7 @@ as easy as possible.
 import time
 
 # Wildcard imports these three functions.
-__all__ = ['parse', 'parseString', 'createDatabase']
+__all__ = ['parse', 'parse_string', 'create_database']
 
 
 # Declaration of Objects
@@ -74,8 +74,8 @@ class Ptdb:
         Contains all the items of the column.
 
     """
-    def __init__(self, title, type_, attr):
-        self.title = title  # This is the name of the column
+    def __init__(self, column, type_, attr):
+        self.column = column  # This is the name of the column
         self.type_ = type_  # This is the type of the column--STRING, INT, FLOAT...
         self.attr = attr    # This is the attribute of the column--AI, NULL...
         self.items = []     # This is the list of items of the column
@@ -91,41 +91,41 @@ class Database:
     file: String or None, Optional
         Contains the filename of the database or None.
 
-    ===================    =============================================================
-    Method                 What does it do?
-    ===================    =============================================================
-    amountOfColumns        Returns an int with the amount of columns.
-    -------------------    -------------------------------------------------------------
-    set_file_to            Changes or sets the filename of the database.
-    -------------------    -------------------------------------------------------------
-    isItemInColumn         Returns True or False if it finds an item in a column.
-    -------------------    -------------------------------------------------------------
-    getItemsInColumn       Returns all the items for a column.
-    -------------------    -------------------------------------------------------------
-    getColumnType          Returns a string with the type of a column.
-    -------------------    -------------------------------------------------------------
-    getColumnAttribute     Returns a string with the attribute of a column.
-    -------------------    -------------------------------------------------------------
-    columnHasAttribute     Returns True or False if a column has a specified attribute.
-    -------------------    -------------------------------------------------------------
-    getRowIndex            Returns an int with the index of a row.
-    -------------------    -------------------------------------------------------------
-    getColumnItem          Returns an item for a specified column.
-    -------------------    -------------------------------------------------------------
-    getDataForIndex        Returns all the data in a specified row.
-    -------------------    -------------------------------------------------------------
-    modifyEntry            Modifies a specific column item.
-    -------------------    -------------------------------------------------------------
-    newEntry               Creates a new row or new entry in the database.
-    -------------------    -------------------------------------------------------------
-    removeEntry            Removes a row in the database.
-    -------------------    -------------------------------------------------------------
-    addTitle               Adds a new column to the database, if possible.
-    -------------------    -------------------------------------------------------------
-    addTitles              Adds multiple columns to the database, if possible.
-    -------------------    -------------------------------------------------------------
-    saveDatabase           Saves or updates the database file.
-    ===================    =============================================================
+    =====================    =============================================================
+    Method                   What does it do?
+    =====================    =============================================================
+    amount_of_columns        Returns an int with the amount of columns.
+    ---------------------    -------------------------------------------------------------
+    set_file_to              Changes or sets the filename of the database.
+    ---------------------    -------------------------------------------------------------
+    is_item_in_column        Returns True or False if it finds an item in a column.
+    ---------------------    -------------------------------------------------------------
+    get_items_in_column      Returns all the items for a column.
+    ---------------------    -------------------------------------------------------------
+    get_column_type          Returns a string with the type of a column.
+    ---------------------    -------------------------------------------------------------
+    get_column_attribute     Returns a string with the attribute of a column.
+    ---------------------    -------------------------------------------------------------
+    column_has_attribute     Returns True or False if a column has a specified attribute.
+    ---------------------    -------------------------------------------------------------
+    get_row_index            Returns an int with the index of a row.
+    ---------------------    -------------------------------------------------------------
+    get_column_item          Returns an item for a specified column.
+    ---------------------    -------------------------------------------------------------
+    get_data_for_index       Returns all the data in a specified row.
+    ---------------------    -------------------------------------------------------------
+    modify_entry             Modifies a specific column item.
+    ---------------------    -------------------------------------------------------------
+    new_entry                Creates a new row or new entry in the database.
+    ---------------------    -------------------------------------------------------------
+    remove_entry             Removes a row in the database.
+    ---------------------    -------------------------------------------------------------
+    add_column               Adds a new column to the database, if possible.
+    ---------------------    -------------------------------------------------------------
+    add_columns              Adds multiple columns to the database, if possible.
+    ---------------------    -------------------------------------------------------------
+    save_database            Saves or updates the database file.
+    =====================    =============================================================
 
     """
     def __init__(self, database, file=None):
@@ -139,7 +139,7 @@ class Database:
         self.database = database  # List of columns
         self.file = file          # Filename
 
-    def amountOfColumns(self):
+    def amount_of_columns(self):
         """Returns the amount of columns in the database."""
         return len(self.database)
 
@@ -155,7 +155,7 @@ class Database:
         if name:
             self.file = name
 
-    def isItemInColumn(self, col, item):
+    def is_item_in_column(self, col, item):
         """Returns True or False if a specified item is in the specified column.
 
         Parameters
@@ -197,7 +197,7 @@ class Database:
 
         return False  # It will reach this point if it didn't find the item, so we return False.
 
-    def getItemsInColumn(self, col):
+    def get_items_in_column(self, col):
         """Returns all the items for a specified column.
 
         Parameters
@@ -227,7 +227,7 @@ class Database:
 
         return []  # If it didn't find the items, we return an empty List.
 
-    def getColumnType(self, col):
+    def get_column_type(self, col):
         """Returns the type of a specified column or an empty string.
 
         Parameters
@@ -256,7 +256,7 @@ class Database:
 
         return ''  # If it reaches this point, no column was found, return an empty string.
 
-    def getColumnAttribute(self, col):
+    def get_column_attribute(self, col):
         """Returns the attribute of a column or an empty string.
 
         Parameters
@@ -285,7 +285,7 @@ class Database:
 
         return ''  # If the column wasn't found, return an empty string.
 
-    def columnHasAttribute(self, col, attr):
+    def column_has_attribute(self, col, attr):
         """Returns True or False if a column has an attribute or not.
 
         Parameters
@@ -313,7 +313,7 @@ class Database:
 
         return False  # If the column wasn't found, we reach this point and return False.
 
-    def getRowIndex(self, col, item):
+    def get_row_index(self, col, item):
         """Returns the index (int) of a specified column item.
 
         Parameters
@@ -348,7 +348,7 @@ class Database:
 
         return None  # None is the generic value if it doesn't find the item.
 
-    def getColumnItem(self, col, index):
+    def get_column_item(self, col, index):
         """Returns an item for a specified column in the specified row.
 
         Parameters
@@ -380,7 +380,7 @@ class Database:
 
         return None  # If it doesn't find the column, returns None.
 
-    def getDataForIndex(self, index):
+    def get_data_for_index(self, index):
         """Returns the value of all the columns in a specified row.
 
         Parameters
@@ -397,11 +397,11 @@ class Database:
         try:
             data = [self.database[i].items[index] for i in range(len(self.database))]
         except IndexError:
-            print 'Error: The index exceeds the number of items in the database.'
+            print('Error: The index exceeds the number of items in the database.')
         else:
             return data
 
-    def modifyEntry(self, col, index, new_entry):
+    def modify_entry(self, col, index, new_entry):
         """Modifies a column in a specified row.
 
         Parameters
@@ -448,11 +448,11 @@ class Database:
 
         if changed_entry:
             # If the process finished successfully; save the database.
-            self.saveDatabase()
+            self.save_database()
 
         return changed_entry  # Returns if the process was completed or not.
 
-    def newEntry(self, titles, entries):
+    def new_entry(self, titles, entries):
         """Adds a new row to the database.
 
         Parameters
@@ -550,11 +550,11 @@ class Database:
                         self.database[i].items.append(0)  # Appends 0 to the ID.
             i += 1  # Goes to the next column
 
-        self.saveDatabase()  # Saves the database.
+        self.save_database()  # Saves the database.
 
         return True  # If it reaches this point, then the entry was completed successfully.
 
-    def removeEntry(self, index):
+    def remove_entry(self, index):
         """Removes a specified row in the database.
 
         Parameters
@@ -566,9 +566,9 @@ class Database:
         for data in self.database:
             data.items.pop(index)  # Removes the item of the column in the specified index
 
-        self.saveDatabase()  # Saves the database
+        self.save_database()  # Saves the database
 
-    def addTitle(self, title, type_='STRING', attr=None):
+    def add_column(self, title, type_='STRING', attr=None):
         """Adds a new column, if possible.
 
         Parameters
@@ -609,12 +609,12 @@ class Database:
         # Returns true if successfully, false otherwise.
         return can_add_title
 
-    def addTitles(self, titles, types, attrs):
+    def add_columns(self, columns, types, attrs):
         """This method adds multiple columns to the database.
 
         Parameters
         ----------
-        titles: List
+        columns: List
             Names of the columns
         types: List
             Type of each column
@@ -630,14 +630,14 @@ class Database:
         i = 0  # This will work as our column index.
 
         # This condition checks that we have the same amount of title, types and attributes
-        if len(titles) != len(types) or len(types) != len(attrs):
+        if len(columns) != len(types) or len(types) != len(attrs):
             # If entered, then return False and end execution.
             return False
         else:
             # If not, the loop through the list of titles to be added.
-            while i < len(titles):
+            while i < len(columns):
                 # This condition will call the function addTitle, and attempt to add the titles one by one.
-                if not self.addTitle(titles[i], types[i], attrs[i]):
+                if not self.add_column(columns[i], types[i], attrs[i]):
                     # If entered here, then return False and end execution
                     return False
                 i += 1  # Go to the next title
@@ -645,7 +645,7 @@ class Database:
         # If got to this point, then everything went smooth, return True.
         return True
 
-    def saveDatabase(self):
+    def save_database(self):
         # Saves all the content in the object to a file with the object's file name.
 
         if self.file is not None:
@@ -779,7 +779,7 @@ def _save_file(file_, string):
 
 
 # Public Global Functions are defined next
-def parseString(string):
+def parse_string(string):
     """This function parses a string into a Database Object.
 
     Parameters
@@ -884,14 +884,14 @@ def parse(file_):
     string = db_.read()     # This gets the string of the file
     db_.close()             # This closes the file to free up the memory
 
-    new_database = parseString(string)  # This parses the string from the file
+    new_database = parse_string(string)  # This parses the string from the file
     new_database.set_file_to(file_)     # This sets the filename of 'new_database'.
 
     # Finally, it returns the Database Object.
     return new_database
 
 
-def createDatabase(name=None):
+def create_database(name=None):
     """Creates an empty Database Object.
 
     Parameters
