@@ -1,9 +1,11 @@
 # PTDB
 ***PTDB--Plain Text Database-- Is a flat file database system written in python. When simplicity and functionality are required, use PTDB.***
 
-**Current Version: 1.1**
+**Current Version: 2.0**
 
 **NOTE: This README is always up to date with the lastest release, an update is always adviced.**
+
+**NOTE: PTDB 2 IS UNSTABLE AS IT IS STILL IN DEVELOPMENT. A FULL UPDATE IS NOT RECOMMENDED AT THIS TIME.**
 
 **NOTE 2: This README contains super BASIC examples. If you really want to learn and use PTDB with its maximum capabilities, read the [DOCUMENTATION](https://github.com/BryanMorfe/ptdb/blob/master/DOCUMENTATION.md).**
 
