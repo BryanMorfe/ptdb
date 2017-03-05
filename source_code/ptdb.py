@@ -59,7 +59,7 @@ class Ptdb:
 
     Parameters
     ----------
-    title: String
+    column: String
         Name of the column.
 
     type_: String
@@ -661,19 +661,19 @@ def _convert_element_to_type(list_, type_):
         try:
             new_list = [int(item) for item in list_]
         except ValueError:
-            print 'Error: One or more items have an invalid type.'
+            print('Error: One or more items have an invalid type.')
     elif type_.upper() == 'FLOAT':
         try:
             new_list = [float(item) for item in list_]
         except ValueError:
-            print 'Error: One or more items have an invalid type.'
+            print('Error: One or more items have an invalid type.')
     elif type_.upper() == 'STRING':
         new_list = list_
     elif type_.upper() == 'BOOL':
         try:
             new_list = [bool(int(item)) for item in list_]
         except ValueError:
-            print 'Error: One or more items have an invalid type.'
+            print('Error: One or more items have an invalid type.')
     else:
         raise ValueError('Invalid column type.')
     return new_list
@@ -684,22 +684,22 @@ def _assign_column_type(item, type_):
         try:
             return int(item)
         except ValueError:
-            print 'One or more items have an invalid type.'
+            print('One or more items have an invalid type.')
     elif type_.upper() == 'FLOAT':
         try:
             return float(item)
         except ValueError:
-            print 'One or more items have an invalid type.'
+            print('One or more items have an invalid type.')
     elif type_.upper() == 'STRING':
         try:
             return str(item)
         except ValueError:
-            print 'One or more items have an invalid type.'
+            print('One or more items have an invalid type.')
     elif type_.upper() == 'BOOL':
         try:
             return bool(int(item))
         except ValueError:
-            print 'One or more items have an invalid type.'
+            print('One or more items have an invalid type.')
     elif type_.upper() == '[INT]':
         list_ = item.split(',')
         list_ = _convert_element_to_type(list_, 'INT')
@@ -720,7 +720,6 @@ def _assign_column_type(item, type_):
 
 
 def _strip_new_line(string):
-    i = 0  # This is used to index a string
     new_string = ''  # This is used to create a copy of the string with the changes made
 
     # This conditions checks whether the finally ends with '\n' or '\t'
