@@ -1,0 +1,5 @@
+[AI]ID(INT)	Name	Lastname	Email	[NULL]Friends_Ids([INT])	Password	[DEFAULT=0]Admin(BOOL)
+0	Bryan	Morfe	bryanmorfe@gmail.com		password1	0
+1	Gabriella	Ashton	gabriellaashton@gmail.com	0,2	P@s5w0rd	0
+2	Bernie	Carter	berniecarter@gmail.com	3	password3	0
+3	Julie	Benson	juliebenson@gmail.com		password4	1
